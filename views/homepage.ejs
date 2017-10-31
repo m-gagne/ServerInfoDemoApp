@@ -1,25 +1,31 @@
-<!-- Default home page -->
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<a href="https://github.com/m-gagne/ServerInfoDemoApp"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
+
+<h1>Server Info: <%= process.env.NAME %></h1>
+
+<div class="container">
+  <div class="well">
+      <ul class="list-group">
+          <li class="list-group-item"><strong>Server Machine Name:</strong> <%= process.env.NAME %></li>
+          <li class="list-group-item"><strong>Server IP:</strong> <%= req.headers["host"] %></li>
+          <li class="list-group-item">
+              <strong>Cookies:</strong>
+              <ul>
+                  <% for(var i=0; i<req.cookies.length; i++) { %>
+                      <li>
+                        <%= req.cookies[i] %>
+                      </li>
+                  <% } %>
+              </ul>
+          </li>
+        </ul>
+  </div>
+
+  <div class="alert-info">This page will refresh every 2 seconds.</div>
+</div>
+
 
 <script>
-  var ip = 
+  setTimeout(function () {
+      document.location = window.location.href.split('?')[0] + "?t=" + new Date().getTime();
+  }, 2000);
 </script>
-
-<h1>Server Info</h1>
-<ul class="list-group">
-  <li class="list-group-item"><strong>Host:</strong> <%= req.host %></li>
-  <li class="list-group-item"><strong>IP:</strong> <%= req.ip %></li>
-  <li class="list-group-item"><strong>Cookies:</strong>
-    <ul>
-      <% Object.keys(req.cookies).forEach(function(key){ %>
-        <li><%= key %> : <%= req.cookies[key] %></li>
-      <% }) %>
-    </ul>
-    <ul>
-      <% Object.keys(req.signedCookies).forEach(function(key){ %>
-        <li><%= key %> : <%= req.signedCookies[key] %></li>
-      <% }) %>
-    </ul>    
-  </li>
-</ul>
