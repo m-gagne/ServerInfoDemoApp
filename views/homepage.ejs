@@ -6,7 +6,7 @@
   <div class="well">
       <ul class="list-group">
           <li class="list-group-item"><strong>Server Machine Name:</strong> <%= process.env.NAME %></li>
-          <li class="list-group-item"><strong>Server IP:</strong> <%= server.address %></li>
+          <li class="list-group-item"><strong>Server IP:</strong> <%= process.env.NAME %></li>
           <li class="list-group-item"><strong>Client IP:</strong> <%= req.headers["x-client-ip"] %></li>
           <li class="list-group-item"><strong>Client Port:</strong> <%= req.headers["x-client-port"] %></li>
           '
