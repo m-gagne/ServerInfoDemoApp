@@ -6,7 +6,10 @@
   <div class="well">
       <ul class="list-group">
           <li class="list-group-item"><strong>Server Machine Name:</strong> <%= process.env.NAME %></li>
-          <li class="list-group-item"><strong>Server IP:</strong> <%= req.headers["host"] %></li>
+          <li class="list-group-item"><strong>Server IP:</strong> <%= server.address %></li>
+          <li class="list-group-item"><strong>Client IP:</strong> <%= req.headers["x-client-ip"] %></li>
+          <li class="list-group-item"><strong>Client Port:</strong> <%= req.headers["x-client-port"] %></li>
+          '
           <li class="list-group-item">
               <strong>Cookies:</strong>
               <ul>
@@ -24,9 +27,9 @@
 </div>
 
 <script>
-    console.log('<%- util.inspect(req, 2) %>');
+    console.log('<%- util.inspect(server, 2) %>');
   </script>
- 
+
 
 <script>
   setTimeout(function () {
